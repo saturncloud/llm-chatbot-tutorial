@@ -3,7 +3,7 @@ import os
 
 from llm_chatbot_tutorial.fsstreamlit import StreamlitChatLoop
 
-st.set_page_config(page_title="pubmed chat", page_icon=":robot_face:", layout='wide')
+st.set_page_config(page_title="chat", page_icon=":robot_face:", layout='wide')
 
 
 @st.cache_resource
