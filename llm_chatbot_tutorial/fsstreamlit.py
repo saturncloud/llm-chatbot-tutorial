@@ -12,7 +12,7 @@ class StreamlitChatLoop:
         self.model: Optional[PreTrainedModel] = None
         self.tokenizer: Optional[PreTrainedTokenizerFast] = None
         self.system_prompt: Optional[str] = """
-        A chat between a curious user and an artificial intelligence assistant. 
+        A chat between a curious user and an artificial intelligence assistant.
         The assistant gives helpful, detailed, and polite answers to the user's questions.\n
         """
         self.clear_conversation()
@@ -22,7 +22,7 @@ class StreamlitChatLoop:
             name='vicuna_v1.1',
             system=self.system_prompt,
             roles=['USER', 'ASSISTANT'],
-            messages=[['USER', 'hi'], ['ASSISTANT', None]],
+            messages=[],
             offset=0,
             sep_style=SeparatorStyle.ADD_COLON_TWO,
             sep=' ',
@@ -30,7 +30,6 @@ class StreamlitChatLoop:
             stop_str=None,
             stop_token_ids=None
         )
-        self.conv.messages = []
 
     def load_models(self):
         model = LlamaForCausalLM.from_pretrained(
@@ -38,7 +37,6 @@ class StreamlitChatLoop:
             load_in_8bit=True,
             torch_dtype=torch.float16,
             device_map="auto",
-            low_cpu_mem_usage=None,
         )
         tokenizer = LlamaTokenizer.from_pretrained(self.model_path)
         self.model = model
