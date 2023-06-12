@@ -7,12 +7,12 @@ st.set_page_config(page_title="chat", page_icon=":robot_face:", layout='wide')
 
 
 @st.cache_resource
-def get_chatter():
+def load_models():
     chat = StreamlitChatLoop(os.getenv('MODEL_PATH', '/home/jovyan/workspace/models/vicuna-7b'))
     chat.load_models()
     return chat
 
-chat = get_chatter()
+chat = load_models()
 
 output = st.text('')
 
