@@ -60,7 +60,7 @@ class StreamlitChatLoop:
             "stop_token_ids": self.conv.stop_token_ids,
             "echo": False,
         }
-        output_stream = generate_stream(self.model, self.tokenizer, gen_params, 0)
+        output_stream = generate_stream(self.model, self.tokenizer, gen_params, 0, context_len=2048)
         output_text = ""
         for outputs in output_stream:
             output_text = outputs["text"]
